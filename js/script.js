@@ -8,7 +8,7 @@ menu.onclick = () => {
 }
 
 
-document.addEventListener("wheel", function(event) {
+document.addEventListener("wheel", function (event) {
     // Prevenir el desplazamiento normal
     event.preventDefault();
 
@@ -19,7 +19,7 @@ document.addEventListener("wheel", function(event) {
 
     if (event.deltaY > 0) {
         // Si se mueve hacia abajo, ir a la siguiente sección
-        nextSection = currentSection ? currentSection.nextElementSibling : sections[1]; // Definir la siguiente sección
+        nextSection = currentSection ? currentSection.nextElementSibling : sections[1];
     } else {
         // Si se mueve hacia arriba, ir a la sección anterior
         nextSection = currentSection ? currentSection.previousElementSibling : sections[sections.length - 1];
@@ -50,6 +50,37 @@ document.addEventListener("scroll", () => {
     });
 });
 
+// Soporte para dispositivos táctiles
+let startY = 0;
+let endY = 0;
+
+document.addEventListener("touchstart", (event) => {
+    startY = event.touches[0].clientY;
+}, { passive: true });
+
+document.addEventListener("touchend", (event) => {
+    endY = event.changedTouches[0].clientY;
+
+    const sections = document.querySelectorAll(".section");
+    const currentSection = document.querySelector(".section.active");
+
+    let nextSection;
+
+    if (startY > endY + 50) {
+        // Deslizamiento hacia arriba (ir a la siguiente sección)
+        nextSection = currentSection ? currentSection.nextElementSibling : sections[1];
+    } else if (startY < endY - 50) {
+        // Deslizamiento hacia abajo (ir a la sección anterior)
+        nextSection = currentSection ? currentSection.previousElementSibling : sections[sections.length - 1];
+    }
+
+    if (nextSection) {
+        window.scrollTo({
+            top: nextSection.offsetTop,
+            behavior: "smooth"
+        });
+    }
+});
 
 // Captura todos los enlaces con la clase 'scroll-btn'
 document.querySelectorAll('.scroll-btn').forEach(function(link) {

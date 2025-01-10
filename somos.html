@@ -1,110 +1,713 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeFid-Somos</title>
-    <link rel="stylesheet" href="css/stylesomos.css">
-    <link rel="icon" href="img/LOGO CODEFID SIN FONDO COLOR BLANCO.png">
-<!--boxionds-->
-    <link rel="stylesheet"
-    href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <title>Quiénes Somos - Soluciones Digitales Integrales</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <!-- AOS - Animate On Scroll -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #0B1728;
+            --secondary-color: #00A6FB;
+            --accent-color: #7209B7;
+            --gradient-1: #4361EE;
+            --gradient-2: #3A0CA3;
+        }
 
-<!-- Remixcoin-->
-<link
-    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
-    rel="stylesheet"
-/>
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background-color: var(--primary-color);
+            color: #fff;
+        }
 
-<!-- google fonts-->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        .hero-section {
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--primary-color), var(--gradient-1));
+        }
 
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
 
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .digital-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .digital-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 166, 251, 0.2);
+        }
+
+        .service-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.1));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1));
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 166, 251, 0.3);
+        }
+
+        .service-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 10px var(--secondary-color));
+        }
+
+        .section-title {
+            position: relative;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+            color: var(--secondary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.3), rgba(58, 12, 163, 0.3));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .digital-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            text-shadow: 0 0 10px var(--secondary-color);
+        }
+
+        .glow-text {
+            text-shadow: 0 0 10px var(--secondary-color);
+        }
+
+        .digital-border {
+            position: relative;
+        }
+
+        .digital-border::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+            z-index: -1;
+            border-radius: 22px;
+            opacity: 0.5;
+        }
+
+        /* Animaciones digitales */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        .digital-button {
+            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+            border: none;
+            padding: 1rem 2rem;
+            color: white;
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .digital-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: all 0.5s ease;
+        }
+
+        .digital-button:hover::before {
+            left: 100%;
+        }
+
+        /* Scroll personalizado */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--primary-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--secondary-color), var(--accent-color));
+            border-radius: 5px;
+        }
+    </style>
+
+    <!--header-->
+    <style>
+        /* [Previous styles remain...] */
+        
+        .digital-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            padding: 1rem 0;
+        }
+
+        .digital-header.scrolled {
+            background: rgba(11, 23, 40, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 166, 251, 0.1);
+            padding: 0.5rem 0;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .navbar-brand::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--secondary-color), transparent);
+        }
+
+        .nav-link {
+            color: #fff !important;
+            position: relative;
+            padding: 0.5rem 1rem !important;
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover::before {
+            width: 100%;
+        }
+
+        .navbar-toggler {
+            border: none;
+            background: transparent;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        .navbar-toggler-icon {
+            background-image: none;
+            position: relative;
+            width: 30px;
+            height: 20px;
+        }
+
+        .toggler-line {
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: var(--secondary-color);
+            transition: all 0.3s ease;
+            left: 0;
+        }
+
+        .toggler-line:nth-child(1) { top: 0; }
+        .toggler-line:nth-child(2) { top: 50%; transform: translateY(-50%); }
+        .toggler-line:nth-child(3) { bottom: 0; }
+
+        .navbar-toggler[aria-expanded="true"] .toggler-line:nth-child(1) {
+            transform: rotate(45deg);
+            top: 50%;
+        }
+
+        .navbar-toggler[aria-expanded="true"] .toggler-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .navbar-toggler[aria-expanded="true"] .toggler-line:nth-child(3) {
+            transform: rotate(-45deg);
+            bottom: 40%;
+        }
+
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                background: rgba(11, 23, 40, 0.95);
+                backdrop-filter: blur(10px);
+                margin: 1rem -1rem -0.5rem;
+                padding: 1rem;
+                border-radius: 10px;
+                border: 1px solid rgba(0, 166, 251, 0.1);
+            }
+
+            .nav-link {
+                padding: 0.75rem 1rem !important;
+                margin: 0.25rem 0;
+                border-radius: 5px;
+            }
+
+            .nav-link:hover {
+                background: rgba(0, 166, 251, 0.1);
+            }
+        }
+
+        /* Adjust hero section to account for fixed header */
+        .hero-section {
+            padding-top: 80px;
+        }
+    </style>
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.digital-header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Cerrar menú al hacer click en un enlace (en móvil)
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                if (navbarCollapse.classList.contains('show')) {
+                    navbarCollapse.classList.remove('show');
+                }
+            });
+        });
+    </script>
 </head>
 <body>
-
-    <!--header -->
-    <header>
-        <a href="#" class="logo"><img src="img/LOGO CODEFID SIN FONDO COLOR BLANCO.png" alt=""></a>
-
-        <ul class="navlist">
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="somos.html">Somos</a></li>
-            <li><a href="#">Proyectos</a></li>
-            <li><a href="servicio.html">servicios</a></li>
-            
-        </ul>
-        <div class="right-content">
-            <a href="#" class="nav-btn">contacto</a>
-            <div class="bx bx-menu" id="menu-icon"></div>
-
-        </div>
+    <header class="digital-header">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand fw-bold fs-4" href="#">
+                    CODEFID
+                </a>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon">
+                        <span class="toggler-line"></span>
+                        <span class="toggler-line"></span>
+                        <span class="toggler-line"></span>
+                    </span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="somos.html">Nosotros</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Proyectos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="servicio.html">Servicios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contacto</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
-    <section id="somos" class="section">
-        <div class="somos-content">
-            <h1>Quiénes Somos</h1>
-            <p>CodeFid, se dedica a proporcionar soluciones digitales innovadoras y personalizadas que ayuden a las empresas a crecer y adaptarse al mundo digital. Creemos en la importancia de ofrecer productos de alta calidad y en la creación de relaciones de confianza a largo plazo con nuestros clientes.</p>
-            <br><br>
-            <div class="scroll">
-                <a href="#somos-2" class="scroll-btn">
-                    <img src="img/scrolldown.gif" alt="Flecha hacia abajo" class="arrow-img">
-                </a>
-            </div>
-        </div>
-        <div class="somos-image">
-            <img src="img/tecnol.jpeg" alt="Equipo CodeFid">
-        </div>
-    </section>
-    
-    <!-- Sección 2 -->
-    <section id="somos-2" class="section">
-        <div class="somos-image">
-            <img src="img/2per.jpeg" alt="Nuestra Misión">
-        </div>
-        <div class="somos-content">
-            <h1>Nuestro Objetivo</h1>
-            <p>En CodeFid, nuestro objetivo es ofrecer soluciones digitales completas que faciliten el crecimiento y la digitalización de las empresas. Nos comprometemos a proporcionar tecnología confiable, segura y eficiente, creando productos y servicios que mejoren la productividad y presencia digital de nuestros clientes.</p>
-            <br><br>
-            <div class="scroll">
-                <a href="#somos-3" class="scroll-btn">
-                    <img src="img/scrolldown.gif" alt="Flecha hacia abajo" class="arrow-img">
-                </a>
-            </div>
-        </div>
-    </section>
-    
-    <section id="somos-3" class="section">
-        <div class="somos-content">
-            <h1>Propósito</h1>
-            <p>Nuestra misión es ofrecer soluciones digitales personalizadas que mejoren los procesos de negocio, optimizando la eficiencia y la presencia digital de nuestros clientes a través de tecnología de confianza y productos innovadores.</p>
-            <br>
-            
-            <p><strong>Valores:</strong> 
-                <ul>
-                    <li><strong>Innovación - Compromiso - Confianza - Excelencia - Adaptabilidad</strong></li>
-               
-                </ul>
+    <!-- Hero Section con Particles.js -->
+    <section class="hero-section d-flex align-items-center">
+        <div id="particles-js"></div>
+        <div class="container hero-content text-center">
+            <h1 class="display-3 fw-bold animate__animated animate__fadeInDown glow-text">
+                Soluciones Digitales Integrales
+            </h1>
+            <p class="lead animate__animated animate__fadeInUp animate__delay-1s">
+                Transformando el futuro digital, un proyecto a la vez
             </p>
-        
-            <div class="scroll">
-                <a href="#somos" class="scroll-btn">
-                    <img src="img/scrolldown.gif" alt="Flecha hacia abajo" class="arrow-img">
-                </a>
-            </div>
-        </div>
-        <div class="somos-image">
-            <img src="img/tecno.png" alt="Equipo CodeFid">
+            <a href="#servicios" class="digital-button btn btn-lg mt-4 animate__animated animate__fadeInUp animate__delay-2s">
+                Explora nuestro universo digital
+                <i class="fas fa-arrow-right ms-2"></i>
+            </a>
         </div>
     </section>
-    
 
-  
-    
+    <div class="container py-5">
+        <!-- Quienes Somos -->
+        <div class="digital-card digital-border mb-5" data-aos="fade-up">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h2 class="section-title">Quiénes Somos</h2>
+                    <p class="lead glow-text">Pioneros en transformación digital</p>
+                    <p>Somos un equipo de visionarios tecnológicos dedicados a transformar ideas en soluciones digitales revolucionarias. Nuestra pasión por la innovación y el desarrollo nos impulsa a crear experiencias digitales extraordinarias.</p>
+                </div>
+                <div class="col-md-6">
+                    <div class="position-relative">
+                        <img src="img/manos.jpeg" alt="Equipo digital" class="img-fluid rounded-3 digital-border">
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <!--hero -->
-  
-<script src="js/script.js"></script>
+        <!-- Estadísticas -->
+        <div class="row g-4 mb-5">
+            <div class="col-md-3 col-6" data-aos="fade-up">
+                <div class="stat-card rounded p-4 text-center digital-border">
+                    <i class="fas fa-project-diagram value-icon pulse"></i>
+                    <h3 class="digital-number">500+</h3>
+                    <p class="mb-0">Proyectos Digitales</p>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-6" data-aos="fade-up">
+                <div class="stat-card rounded p-4 text-center digital-border">
+                    <i class="fas fa-users fs-1 mb-3 value-icon pulse"></i>
+                    <h3 class="digital-number">500+</h3>
+                    <p class="mb-0">Clientes Satisfechos</p>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-6" data-aos="fade-up">
+                <div class="stat-card rounded p-4 text-center digital-border">
+                    <i class="fas fa-clock fs-1 mb-3 value-icon pulse"></i>
+                    <h3 class="digital-number">500+</h3>
+                    <p class="mb-0">Años de Experiencia</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6" data-aos="fade-up">
+                <div class="stat-card rounded p-4 text-center digital-border">
+                    <i class="fas fa-award fs-1 mb-3 value-icon pulse"></i>
+                    <h3 class="digital-number">500+</h3>
+                    <p class="mb-0">Premios Recibidos</p>
+                </div>
+            </div>
+            <!-- [Otros stat-cards similares...] -->
+        </div>
+
+
+        <style>
+            /* [Estilos anteriores permanecen...] */
+    
+            .vision-mission-card {
+                background: linear-gradient(145deg, rgba(11, 23, 40, 0.8), rgba(0, 166, 251, 0.1));
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 20px;
+                transition: all 0.3s ease;
+                height: 100%;
+            }
+    
+            .vision-mission-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 30px rgba(0, 166, 251, 0.2);
+            }
+    
+            .values-container {
+                position: relative;
+                z-index: 1;
+            }
+    
+            .values-container::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(45deg, var(--primary-color), var(--gradient-1));
+                opacity: 0.5;
+                z-index: -1;
+                border-radius: 20px;
+            }
+    
+            .value-card {
+                background: rgba(255, 255, 255, 0.05);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 15px;
+                transition: all 0.3s ease;
+            }
+    
+            .value-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(0, 166, 251, 0.2);
+            }
+    
+            .digital-icon {
+                font-size: 2.5rem;
+                background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                margin-bottom: 1rem;
+            }
+        </style>
+
+
+       <!-- Misión y Visión -->
+        <section class="mb-5">
+            <div class="row g-4">
+                <div class="col-md-6" data-aos="fade-right">
+                    <div class="vision-mission-card p-4">
+                        <div class="text-center mb-4">
+                            <i class="fas fa-bullseye digital-icon pulse"></i>
+                        </div>
+                        <h3 class="text-center mb-4 glow-text">Misión</h3>
+                        <p>Impulsamos la transformación digital de nuestros clientes mediante soluciones tecnológicas innovadoras y servicios de alta calidad. Nos comprometemos a:</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check-circle text-secondary me-2"></i>Desarrollar soluciones web personalizadas</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-secondary me-2"></i>Proporcionar hosting confiable y seguro</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-secondary me-2"></i>Crear aplicaciones eficientes y escalables</li>
+                            <li><i class="fas fa-check-circle text-secondary me-2"></i>Garantizar la satisfacción del cliente</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <div class="vision-mission-card p-4">
+                        <div class="text-center mb-4">
+                            <i class="fas fa-eye digital-icon pulse"></i>
+                        </div>
+                        <h3 class="text-center mb-4 glow-text">Visión</h3>
+                        <p>Aspiramos a ser líderes reconocidos en la industria tecnológica, destacándonos por:</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-star text-secondary me-2"></i>Innovación constante en soluciones digitales</li>
+                            <li class="mb-2"><i class="fas fa-star text-secondary me-2"></i>Excelencia en el desarrollo tecnológico</li>
+                            <li class="mb-2"><i class="fas fa-star text-secondary me-2"></i>Compromiso con el éxito del cliente</li>
+                            <li><i class="fas fa-star text-secondary me-2"></i>Vanguardia en tecnologías emergentes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+  <!-- Valores -->
+  <section class="values-container p-5 mb-5" data-aos="fade-up">
+    <h2 class="section-title text-center">Nuestros Valores</h2>
+    <div class="row g-4">
+        <div class="col-lg-3 col-md-6">
+            <div class="value-card p-4 text-center h-100">
+                <i class="fas fa-lightbulb digital-icon"></i>
+                <h4 class="glow-text">Innovación</h4>
+                <p>Exploramos constantemente nuevas tecnologías y metodologías para ofrecer soluciones vanguardistas que impulsen el éxito de nuestros clientes.</p>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="value-card p-4 text-center h-100">
+                <i class="fas fa-handshake digital-icon"></i>
+                <h4 class="glow-text">Compromiso</h4>
+                <p>Nos dedicamos completamente a cada proyecto, garantizando resultados excepcionales y superando las expectativas de nuestros clientes.</p>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="value-card p-4 text-center h-100">
+                <i class="fas fa-gem digital-icon"></i>
+                <h4 class="glow-text">Excelencia</h4>
+                <p>Mantenemos los más altos estándares de calidad en cada línea de código, cada diseño y cada solución que desarrollamos.</p>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="value-card p-4 text-center h-100">
+                <i class="fas fa-shield-alt digital-icon"></i>
+                <h4 class="glow-text">Confiabilidad</h4>
+                <p>Construimos relaciones duraderas basadas en la confianza, la transparencia y el compromiso con el éxito de nuestros clientes.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- Servicios -->
+        <section id="servicios" class="mb-5">
+            <h2 class="section-title text-center">Nuestros Servicios</h2>
+            <div class="row g-4">
+                <div class="col-lg-4" data-aos="zoom-in">
+                    <div class="service-card digital-border h-100">
+                        <div class="card-body text-center p-4">
+                            <i class="fas fa-laptop-code value-icon pulse"></i>
+                            <h4 class="glow-text">Desarrollo Web Avanzado</h4>
+                            <p>Creamos experiencias digitales inmersivas y aplicaciones web de última generación.</p>
+                            <a href="servicio.html" class="digital-button btn mt-3">Explorar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" data-aos="zoom-in">
+                    <div class="service-card digital-border h-100">
+                        <div class="card-body text-center p-4">
+                            <i class="fas fa-server fs-1 text-primary mb-3"></i>
+                            <h4 class="glow-text">Hosting y Dominio</h4>
+                            <p>Servicios de alojamiento web confiable y gestión de dominios con soporte técnico especializado.</p>
+                            <a href="servicio.html" class="digital-button btn mt-3">Explorar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" data-aos="zoom-in">
+                    <div class="service-card digital-border h-100">
+                        <div class="card-body text-center p-4">
+                            <i class="fas fa-cloud fs-1 text-primary mb-3"></i>
+                            <h4 class="glow-text">Soluciones en la Nube</h4>
+                            <p>Implementación y gestión de infraestructura cloud para optimizar tus operaciones digitales.</p>
+                            <a href="servicio.html" class="digital-button btn mt-3">Explorar</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- [Otros service-cards similares...] -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    
+    <script>
+        // Inicializar AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Configuración de Particles.js
+        particlesJS('particles-js',
+            {
+                "particles": {
+                    "number": {
+                        "value": 80,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#00A6FB"
+                    },
+                    "shape": {
+                        "type": "circle"
+                    },
+                    "opacity": {
+                        "value": 0.5,
+                        "random": false
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#00A6FB",
+                        "opacity": 0.4,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 6,
+                        "direction": "none",
+                        "random": false,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "repulse"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    }
+                },
+                "retina_detect": true
+            }
+        );
+    </script>
 </body>
 </html>

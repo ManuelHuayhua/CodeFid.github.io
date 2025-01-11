@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <!-- AOS - Animate On Scroll -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', monospace;
+}
+
+:root {
+    --terminal-black: #1E1E1E;
+    --terminal-blue: #007ACC;
+    --terminal-green: #4EC9B0;
+    --terminal-text: #D4D4D4;
+    --terminal-comment: #6A9955;
+    --terminal-function: #DCDCAA;
+    --terminal-keyword: #569CD6;
+    --terminal-string: #CE9178;
+    --terminal-number: #B5CEA8;
+}
+
+body {
+    background: var(--terminal-black);
+    color: var(--terminal-text);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.contact-section {
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Terminal Window Header */
+.terminal-header {
+    background: #323233;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+    margin: 0 auto;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.terminal-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.dot-red { background: #FF5F56; }
+.dot-yellow { background: #FFBD2E; }
+.dot-green { background: #27C93F; }
+
+.container2 {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: var(--terminal-black);
+    border: 1px solid var(--terminal-blue);
+    border-radius: 0 0 10px 10px;
+    padding: 20px;
+    position: relative;
+}
+
+.section-header {
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--terminal-blue);
+    padding-bottom: 15px;
+}
+
+.section-header h2 {
+    color: var(--terminal-keyword);
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin-bottom: 15px;
+    word-wrap: break-word;
+}
+
+.section-header p {
+    color: var(--terminal-comment);
+    margin-left: 10px;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.contact-item {
+    background: rgba(0, 122, 204, 0.1);
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid var(--terminal-blue);
+    position: relative;
+}
+
+.contact-item i {
+    color: var(--terminal-function);
+    margin-bottom: 15px;
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+}
+
+.contact-item h3 {
+    color: var(--terminal-green);
+    margin-bottom: 10px;
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    word-wrap: break-word;
+}
+
+.contact-item p {
+    color: var(--terminal-string);
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    word-wrap: break-word;
+}
+
+.contact-form {
+    background: rgba(0, 122, 204, 0.1);
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid var(--terminal-blue);
+    margin-top: 20px;
+}
+
+.contact-form h3 {
+    color: var(--terminal-keyword);
+    margin-bottom: 20px;
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    color: var(--terminal-green);
+    display: block;
+    margin-bottom: 8px;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    background: var(--terminal-black);
+    border: 1px solid var(--terminal-blue);
+    border-radius: 4px;
+    color: var(--terminal-text);
+    font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+.form-group textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+/* Mobile-first media queries */
+@media (max-width: 768px) {
+    .contact-section {
+        padding: 10px;
+    }
+    
+    .container2 {
+        padding: 15px;
+    }
+    
+    .section-header {
+        text-align: center;
+    }
+    
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-item {
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .terminal-header span {
+        font-size: 14px;
+    }
+    
+    .section-header h2::before,
+    .section-header h2::after {
+        display: none;
+    }
+    
+    .contact-form {
+        padding: 15px;
+    }
+}
+
+/* Matrix canvas responsive fix */
+.matrix-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.1;
+}
+    </style>
+
+ 
+</head>
+<body>
+   
+    <section class="contact-section">
+        <canvas class="matrix-bg" id="matrix"></canvas>
+        <div class="terminal-header">
+            <div class="terminal-dot dot-red"></div>
+            <div class="terminal-dot dot-yellow"></div>
+            <div class="terminal-dot dot-green"></div>
+            <span style="color: #666;">Contact - Manuel Huayhua</span>
+        </div>
+     
+        <div class="container2">
+            <div class="section-header">
+                <h2>CONTACTANOS</h2>
+                <p>// "En CODEFID estamos aquí para convertir tus ideas en soluciones. Déjanos ayudarte a llevar tu negocio al siguiente nivel con nuestras páginas web, software y soporte técnico confiable. ¡Contáctanos y hagamos que suceda!"</p>
+            </div>
+        
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <i class="fas fa-terminal"></i>
+                    <h3>Llamanos o escribenos</h3>
+                    <p>$ 924517984</p>
+                    
+                </div>
+        
+                <div class="contact-item">
+                    <i class="fas fa-code"></i>
+                    <h3>Nuestro Correo</h3>
+                    <p>Manuelitotlv123@gmail.com</p>
+               
+                </div>
+        
+                <div class="contact-item">
+                    <i class="fas fa-network-wired"></i>
+                    <h3>Horarios de Atención                    </h3>
+                    <p>Lunes a Viernes: --:--AM---:--PM</p>
+                    <p>Sabados: --:--AM---:--PM</p>
+                </div>
+            </div>
+        
+            <div class="contact-form">
+                <h3>submitRequest()</h3>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label>userName</label>
+                        <input id="userName" type="text" placeholder="const userName = " required>
+                    </div>
+        
+                    <div class="form-group">
+                        <label>userEmail</label>
+                        <input id="userEmail" type="email" placeholder="const userEmail = " required>
+                    </div>
+        
+                    <div class="form-group">
+                        <label>requestType</label>
+                        <input id="requestType" type="text" placeholder="const requestType = " required>
+                    </div>
+        
+                    <div class="form-group">
+                        <label>messageBody</label>
+                        <textarea id="messageBody" placeholder="const messageBody = `" required></textarea>
+                    </div>
+        
+                    <button type="button" class="submit-btn" onclick="sendToWhatsApp()">sendRequest()</button>
+                </form>
+            </div>
+        </div>
+      
+        
+    </section>
+
+    <script>
+        // Matrix Rain Effect
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const characters = "abcdefghijklmnopqrstuvwxyz0123456789<>/?[]{}|=+-_)(*&^%$#@!";
+        const fontSize = 14;
+        const columns = canvas.width/fontSize;
+        const drops = [];
+
+        for(let x = 0; x < columns; x++)
+            drops[x] = 1;
+
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+
+            for(let i = 0; i < drops.length; i++) {
+                const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+
+                if(drops[i]*fontSize > canvas.height && Math.random() > 0.975)
+                    drops[i] = 0;
+
+                drops[i]++;
+            }
+        }
+
+        setInterval(draw, 35);
+
+        // Resize handler
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+
+<script>
+    function sendToWhatsApp() {
+        // Capturando los valores del formulario
+        const userName = document.getElementById("userName").value;
+        const userEmail = document.getElementById("userEmail").value;
+        const requestType = document.getElementById("requestType").value;
+        const messageBody = document.getElementById("messageBody").value;
+
+        // Validando campos requeridos
+        if (!userName || !userEmail || !requestType || !messageBody) {
+            alert("Por favor, complete todos los campos.");
+            return;
+        }
+
+        // Construyendo el mensaje para WhatsApp
+        const phoneNumber = "924517984";
+        const message = `Hola, aquí están los datos de mi solicitud:%0A%0A` +
+                        `userName: ${userName}%0A` +
+                        `userEmail: ${userEmail}%0A` +
+                        `requestType: ${requestType}%0A` +
+                        `messageBody: ${messageBody}`;
+
+        // Verificar si el navegador soporta `navigator.share`
+        if (navigator.userAgent.includes("Android") || navigator.userAgent.includes("iPhone")) {
+            // Dispositivos móviles
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
+            window.open(whatsappURL, "_blank");
+        } else {
+            // Escritorio (WhatsApp Web)
+            const whatsappWebURL = `https://web.whatsapp.com/send?phone=51${phoneNumber}&text=${message}`;
+            window.open(whatsappWebURL, "_blank");
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diseño Tech Vibrante</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
+    <style>
+        :root {
+            --color-primary: #6366f1;
+            --color-secondary: #ec4899;
+            --color-accent: #8b5cf6;
+        }
+
+        .bg-tech-pattern {
+            background-color: #0f172a;
+            background-image: radial-gradient(circle at 1px 1px, #4f46e5 1px, transparent 0);
+            background-size: 30px 30px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+        }
+
+        .pulse {
+            animation: pulse-border 2s infinite;
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #6366f1, #ec4899, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient 5s ease infinite;
+            background-size: 300% 300%;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .tech-card {
+            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .emoji-bullet {
+            font-size: 1.5em;
+            margin-right: 0.5em;
+            vertical-align: middle;
+        }
+
+        .feature-icon {
+            font-size: 2.5em;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: -1;
+            animation: blobMove 20s ease-in-out infinite;
+        }
+
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 100px auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background: linear-gradient(to bottom, var(--color-primary), var(--color-secondary));
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background: var(--color-accent);
+            border: 4px solid var(--color-primary);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -16px;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @media screen and (max-width: 600px) {
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item::after {
+                left: 15px;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0%;
+            }
+        }
+
+        /* New styles for project cards */
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.8));
+            z-index: 1;
+        }
+
+        .project-card-content {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+
+<header id="header" class="fixed w-full top-0 z-50 transition-all duration-300 bg-transparent">
+    <nav class="container mx-auto px-4">
+        <div class="flex justify-between items-center py-4">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <a href="#" class="flex items-center space-x-2">
+                    <img src="img/LOGO CODEFID SIN FONDO COLOR BLANCO.png" alt="CODEFID" class="w-auto" style="height: 70px;">
+                    
+                </a>
+            </div>
+
+            <!-- Menú de navegación para desktop -->
+            <div class="hidden lg:flex items-center space-x-1">
+                <a href="index.html" class="px-4 py-2 text-white rounded-lg hover:bg-white/10 transition-all duration-300 flex items-center space-x-1">
+                    <i class="bi bi-house-door"></i>
+                    <span>Inicio</span>
+                </a>
+                <a href="somos.html" class="px-4 py-2 text-white rounded-lg hover:bg-white/10 transition-all duration-300 flex items-center space-x-1">
+                    <i class="bi bi-person"></i>
+                    <span>Nosotros</span>
+                </a>
+                <a href="servicio.html" class="px-4 py-2 text-white rounded-lg hover:bg-white/10 transition-all duration-300 flex items-center space-x-1">
+                    <i class="bi bi-box"></i>
+                    <span>Planes</span>
+                </a>
+                <a href="proyecto.html" class="px-4 py-2 text-white rounded-lg hover:bg-white/10 transition-all duration-300 flex items-center space-x-1">
+                    <i class="bi bi-briefcase"></i>
+                        <span>Proyectos</span>
+                </a>
+                <a href="contacto.html" class="ml-4 px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center space-x-2">
+                    <i class="bi bi-envelope"></i>
+                    <span>Contáctanos</span>
+                </a>
+            </div>
+
+            <!-- Botón menú móvil con animación -->
+            <div class="lg:hidden">
+                <button id="mobile-menu-button" class="relative w-10 h-10 text-white focus:outline-none bg-white/10 rounded-lg hover:bg-white/20 transition-all duration-300">
+                    <div id="hamburger" class="absolute inset-0 flex flex-col items-center justify-center space-y-1.5 transition-all duration-300">
+                        <span class="block w-6 h-0.5 bg-white rounded-full transition-all duration-300"></span>
+                        <span class="block w-6 h-0.5 bg-white rounded-full transition-all duration-300"></span>
+                        <span class="block w-6 h-0.5 bg-white rounded-full transition-all duration-300"></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menú móvil mejorado -->
+        <div id="mobile-menu" class="hidden lg:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 bg-white/10 backdrop-blur-lg rounded-lg mt-2">
+                <a href="index.html" class="block px-4 py-3 text-white rounded-lg hover:bg-white/10 transition-all duration-300">
+                    <div class="flex items-center space-x-2">
+                        <i class="bi bi-house-door"></i>
+                        <span>Inicio</span>
+                    </div>
+                </a>
+                <a href="somos.html" class="block px-4 py-3 text-white rounded-lg hover:bg-white/10 transition-all duration-300">
+                    <div class="flex items-center space-x-2">
+                        <i class="bi bi-person"></i>
+                    <span>Nosotros</span>
+                    </div>
+                </a>
+                <a href="servicio.html" class="block px-4 py-3 text-white rounded-lg hover:bg-white/10 transition-all duration-300">
+                    <div class="flex items-center space-x-2">
+                        <i class="bi bi-box"></i>
+                        <span>Planes</span>
+                    </div>
+                </a>
+                <a href="proyecto.html" class="block px-4 py-3 text-white rounded-lg hover:bg-white/10 transition-all duration-300">
+                    <div class="flex items-center space-x-2">
+                        <i class="bi bi-briefcase"></i>
+                        <span>Proyectos</span>
+                    </div>
+                </a>
+                <a href="contacto.html" class="block px-4 py-3 text-white rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 transition-all duration-300 mt-4">
+                    <div class="flex items-center space-x-2 justify-center">
+                        <i class="bi bi-envelope"></i>
+                        <span>Contáctanos</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </nav>
+</header>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const header = document.getElementById('header');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburger = document.getElementById('hamburger');
+        let isMenuOpen = false;
+    
+        // Función para manejar el scroll con throttle
+        let lastScrollPosition = 0;
+        let ticking = false;
+    
+        function handleScroll() {
+lastScrollPosition = window.scrollY;
+
+if (!ticking) {
+    window.requestAnimationFrame(() => {
+        if (window.innerWidth >= 1024) { // Solo en pantallas grandes (lg)
+            if (lastScrollPosition > 50) {
+header.classList.remove('bg-transparent');
+header.classList.add('bg-gradient', 'from-[#a3a8d1]', 'via-[#5f47e7]', 'to-[#1e40af]', 'backdrop-blur-lg', 'shadow-lg');
+} else {
+header.classList.add('bg-transparent');
+header.classList.remove('bg-gradient', 'from-[#a3a8d1]', 'via-[#5f47e7]', 'to-[#1e40af]', 'backdrop-blur-lg', 'shadow-lg');
+}
+        } else {
+            header.classList.add('bg-transparent'); // Asegura que sea transparente en móviles
+            header.classList.remove('bg-gray-900/95', 'backdrop-blur-lg', 'shadow-lg');
+        }
+        ticking = false;
+    });
+
+    ticking = true;
+}
+}
+    
+        // Función para toggle del menú móvil con animación
+        function toggleMobileMenu() {
+            isMenuOpen = !isMenuOpen;
+            
+            // Animar icono hamburguesa
+            const spans = hamburger.getElementsByTagName('span');
+            if (isMenuOpen) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+                hamburger.classList.add('active');
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+                hamburger.classList.remove('active');
+            }
+    
+            // Toggle menú con animación
+            if (isMenuOpen) {
+                mobileMenu.style.display = 'block';
+                setTimeout(() => {
+                    mobileMenu.style.opacity = '1';
+                    mobileMenu.style.transform = 'translateY(0)';
+                }, 10);
+            } else {
+                mobileMenu.style.opacity = '0';
+                mobileMenu.style.transform = 'translateY(-10px)';
+                setTimeout(() => {
+                    mobileMenu.style.display = 'none';
+                }, 300);
+            }
+        }
+    
+        // Event listeners
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        mobileMenuButton.addEventListener('click', toggleMobileMenu);
+    
+        // Cerrar menú móvil al hacer click fuera
+        document.addEventListener('click', function(event) {
+            const isClickInside = header.contains(event.target);
+            
+            if (!isClickInside && isMenuOpen) {
+                toggleMobileMenu();
+            }
+        });
+    
+        // Inicializar el estado del header
+        handleScroll();
+    
+        // Añadir estilos de transición al menú móvil
+        mobileMenu.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        mobileMenu.style.opacity = '0';
+        mobileMenu.style.transform = 'translateY(-10px)';
+    });
+    
+    // Añadir efecto de scroll suave a los enlaces
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const href = this.getAttribute('href');
+            if (href !== '#') {
+                document.querySelector(href).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    </script>
+
+    <br><br>
+<body class="bg-tech-pattern text-gray-100 relative">
+    <!-- Blobs de fondo -->
+    <div class="blob w-96 h-96 bg-indigo-500 top-0 left-0"></div>
+    <div class="blob w-96 h-96 bg-pink-500 bottom-0 right-0"></div>
+
+    <!-- Sección Principal -->
+    <section class="min-h-screen relative overflow-hidden">
+        <div class="container mx-auto px-4 py-20">
+            <!-- Título Principal -->
+            <div class="text-center mb-20" data-aos="fade-down">
+                <h1 class="text-6xl md:text-7xl font-bold gradient-text mb-6">
+                    Tecnología del Futuro 🚀
+                </h1>
+                <p class="text-xl text-gray-300">Explorando las fronteras de la innovación</p>
+            </div>
+
+            <!-- Cards Destacadas -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="tech-card rounded-2xl p-6" data-aos="fade-up">
+                    <div class="feature-icon mb-4">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">IA Avanzada 🤖</h3>
+                    <ul class="space-y-3">
+                        <li><span class="emoji-bullet">🎯</span> Aprendizaje profundo</li>
+                        <li><span class="emoji-bullet">🧠</span> Redes neuronales</li>
+                        <li><span class="emoji-bullet">📊</span> Análisis predictivo</li>
+                    </ul>
+                    <button class="mt-6 w-full py-3 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg hover:opacity-90 transition-opacity pulse">
+                        Explorar más
+                    </button>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="tech-card rounded-2xl p-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon mb-4">
+                        <i class="fas fa-vr-cardboard"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Realidad Virtual 🎮</h3>
+                    <ul class="space-y-3">
+                        <li><span class="emoji-bullet">🌍</span> Mundos inmersivos</li>
+                        <li><span class="emoji-bullet">🎯</span> Experiencias 3D</li>
+                        <li><span class="emoji-bullet">🎨</span> Diseño interactivo</li>
+                    </ul>
+                    <button class="mt-6 w-full py-3 bg-gradient-to-r from-pink-500 to-purple-500 rounded-lg hover:opacity-90 transition-opacity pulse">
+                        Descubrir VR
+                    </button>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="tech-card rounded-2xl p-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon mb-4">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Quantum Tech ⚡</h3>
+                    <ul class="space-y-3">
+                        <li><span class="emoji-bullet">💫</span> Computación cuántica</li>
+                        <li><span class="emoji-bullet">🔮</span> Algoritmos avanzados</li>
+                        <li><span class="emoji-bullet">🎲</span> Encriptación segura</li>
+                    </ul>
+                    <button class="mt-6 w-full py-3 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg hover:opacity-90 transition-opacity pulse">
+                        Iniciar quantum
+                    </button>
+                </div>
+            </div>
+
+            <!-- Características con Iconos -->
+            <div class="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center" data-aos="zoom-in">
+                    <i class="fas fa-bolt text-4xl text-yellow-400 mb-4"></i>
+                    <h4 class="text-xl font-bold">Ultra Rápido ⚡</h4>
+                </div>
+                <div class="text-center" data-aos="zoom-in" data-aos-delay="100">
+                    <i class="fas fa-shield-alt text-4xl text-green-400 mb-4"></i>
+                    <h4 class="text-xl font-bold">Seguro 🔒</h4>
+                </div>
+                <div class="text-center" data-aos="zoom-in" data-aos-delay="200">
+                    <i class="fas fa-magic text-4xl text-purple-400 mb-4"></i>
+                    <h4 class="text-xl font-bold">Intuitivo ✨</h4>
+                </div>
+                <div class="text-center" data-aos="zoom-in" data-aos-delay="300">
+                    <i class="fas fa-rocket text-4xl text-pink-400 mb-4"></i>
+                    <h4 class="text-xl font-bold">Escalable 🚀</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="py-20 relative overflow-hidden">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 gradient-text">Evolución Tecnológica</h2>
+
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-content">
+                        <h3 class="text-xl font-bold mb-2">2023</h3>
+                        <p>Avances significativos en IA generativa y aprendizaje automático.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-left">
+                    <div class="timeline-content">
+                        <h3 class="text-xl font-bold mb-2">2025</h3>
+                        <p>Implementación masiva de redes 6G y comunicación cuántica.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-content">
+                        <h3 class="text-xl font-bold mb-2">2028</h3>
+                        <p>Realidad aumentada integrada en lentes de contacto inteligentes.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-left">
+                    <div class="timeline-content">
+                        <h3 class="text-xl font-bold mb-2">2030</h3>
+                        <p>Computadoras cuánticas comerciales revolucionan la criptografía y el modelado molecular.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Projects Section -->
+    <section class="py-20 relative overflow-hidden">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 gradient-text">Nuestros Proyectos</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Card 1 -->
+                <div class="project-card" data-aos="fade-up">
+                    <img src="/placeholder.svg?height=400&width=600" alt="Proyecto 1" class="w-full h-64 object-cover">
+                    <div class="project-card-content p-6">
+                        <h3 class="text-2xl font-bold mb-2">Proyecto IA</h3>
+                        <p class="text-gray-300 mb-4">Desarrollo de un asistente virtual avanzado para empresas.</p>
+                        <button class="px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg hover:opacity-90 transition-opacity">
+                            Ver más
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="/placeholder.svg?height=400&width=600" alt="Proyecto 2" class="w-full h-64 object-cover">
+                    <div class="project-card-content p-6">
+                        <h3 class="text-2xl font-bold mb-2">VR Educativa</h3>
+                        <p class="text-gray-300 mb-4">Plataforma de aprendizaje inmersivo para estudiantes.</p>
+                        <button class="px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-500 rounded-lg hover:opacity-90 transition-opacity">
+                            Ver más
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project Card 3 -->
+                <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="/placeholder.svg?height=400&width=600" alt="Proyecto 3" class="w-full h-64 object-cover">
+                    <div class="project-card-content p-6">
+                        <h3 class="text-2xl font-bold mb-2">Quantum Security</h3>
+                        <p class="text-gray-300 mb-4">Sistema de encriptación basado en tecnología cuántica.</p>
+                        <button class="px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg hover:opacity-90 transition-opacity">
+                            Ver más
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-out-cubic',
+            once: false,
+            mirror: true
+        });
+    </script>
+</body>
+</html>
+

@@ -1,84 +1,590 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeFid</title>
-    <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="img/LOGO CODEFID SIN FONDO COLOR BLANCO.png">
-<!--boxionds-->
-    <link rel="stylesheet"
-    href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
-<!-- Remixcoin-->
-<link
-    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
-    rel="stylesheet"
-/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
-<!-- google fonts-->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
 
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
 
+        :root {
+            --main-color: #2563eb;
+            --text-color: #fff;
+            --bg-color: #0f172a;
+            --hover-color: #3b82f6;
+        }
+
+        body {
+    background: linear-gradient(135deg, #0f172a, #1e293b, #2563eb);
+    background-size: 400% 400%;
+    animation: gradient-animation 10s ease infinite;
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+       
+
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            padding: 2rem 5%;
+        }
+
+        .hero-text {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(37,99,235,0.1);
+            transform-style: preserve-3d;
+            transition: all 0.6s ease;
+            animation: cardFloat 6s ease-in-out infinite;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-text h5 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--main-color);
+        }
+
+        .hero-text h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--text-color), var(--main-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient 8s ease infinite;
+        }
+
+        .hero-text p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            animation: fadeIn 2s ease;
+        }
+
+        .main-hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: var(--main-color);
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.45s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: rgba(255,255,255,0.2);
+            transition: all 0.45s ease;
+        }
+
+        .btn:hover::before {
+            width: 100%;
+        }
+
+        .price {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: all 0.45s ease;
+        }
+
+        .price:hover {
+            color: var(--main-color);
+            transform: translateX(5px);
+        }
+
+        .price span {
+            color: var(--main-color);
+        }
+
+        .hero-img {
+            position: relative;
+            z-index: 1;
+            animation: float 6s ease-in-out infinite;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .hero-img img {
+            max-width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 20px rgba(37,99,235,0.3));
+        }
+
+        .icons {
+            position: fixed;
+            top: auto;
+            bottom: 5%;
+            right: 3%;
+            display: flex;
+            gap: 1rem;
+            z-index: 2;
+        }
+
+        .icons a {
+            color: var(--text-color);
+            font-size: 1.5rem;
+            transition: all 0.45s ease;
+        }
+
+        .icons a:hover {
+            color: var(--main-color);
+            transform: translateY(-5px);
+        }
+
+        .scroll {
+            position: fixed;
+            bottom: 5%;
+            left: 3%;
+            z-index: 2;
+        }
+
+        .scroll a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.45s ease;
+        }
+
+        .scroll a:hover {
+            color: var(--main-color);
+            transform: translateY(-5px);
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--main-color);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 999;
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 20px rgba(37,99,235,0.5);
+        }
+
+        .cursor::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            border-radius: 50%;
+            background: var(--main-color);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.5;
+        }
+
+        @media (max-width: 768px) {
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+
+            .hero-text p {
+                font-size: 0.9rem;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            .icons {
+                right: 2%;
+                bottom: 2%;
+            }
+
+            .scroll {
+                left: 2%;
+                bottom: 2%;
+            }
+
+            .scroll a {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .hero {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .hero-text {
+                max-width: 50%;
+            }
+
+            .hero-img {
+                max-width: 45%;
+            }
+        }
+    </style>
 </head>
-<body>
 
-    <!--header -->
-    <header>
-        <a href="#" class="logo"><img src="img/LOGO CODEFID SIN FONDO COLOR BLANCO.png" alt=""></a>
-
-        <ul class="navlist">
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="somos.html">Nosotros</a></li>
-            <li><a href="servicio.html">Planes</a></li>
-            <li><a href="proyecto.html">Proyectos</a></li>
-            
-            
-        </ul>
-        <div class="right-content">
-            <a href="contacto.html" class="nav-btn">contacto</a>
-            <div class="bx bx-menu" id="menu-icon"></div>
-
-        </div>
-    </header>
-
-    <!--hero -->
-    <section class="hero">
-        <div class="hero-text">
-            <h5>Bvienvenido a </h5>
-            <h1>CodeFid</h1>
-            <P>"En CodFid nos especializamos en ofrecer soluciones digitales completas para tu negocio. Creamos páginas web, alojamos tu sitio de manera segura y te proporcionamos correos corporativos para dar una imagen confiable. Además, desarrollamos aplicaciones personalizadas para que tu empresa funcione mejor y esté siempre conectada. Estaremos siempre al pendiente de tus necesidades, y ellas serán nuestra prioridad. ¡Déjanos ayudarte a hacer crecer tu negocio con tecnología de confianza!"</P>
-            <div class="main-hero">
-                <a href="#" class="btn">Contactanos</a>
-                <a href="#" class="price">
-                    codigo | <span>fiable</span>
+<header id="header" class="fixed w-full top-0 z-50 transition-all duration-300 bg-transparent">
+    <nav class="container mx-auto px-4">
+        <div class="flex justify-between items-center py-4">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <a href="#" class="flex items-center space-x-2">
+                    <img src="img/LOGO CODEFID SIN FONDO COLOR BLANCO.png" alt="CODEFID" class="w-auto" style="height: 70px;">
+                    
                 </a>
             </div>
 
+            <!-- Menú de navegación para desktop -->
+            <div class="hidden lg:flex items-center space-x-1">
+                <a href="index.html" class="px-4 py-2 text-white rounded-lg hover:bg-white/10 transition-all duration-300 flex items-center space-x-1">
+                    <i class="bi bi-house-door"></i>
+                    <span>Inicio</span>
+                </a>
+                <a href="somos.html" class="px-4 py-2 text-white rounded-lg hover:bg-white/10 transition-all duration-300 flex items-center space-x-1">
+                    <i class="bi bi-person"></i>
+                    <span>Nosotros</span>
+                </a>
+                <a href="servicio.html" class="px-4 py-2 text-white rounded-lg hover:bg-white/10 transition-all duration-300 flex items-center space-x-1">
+                    <i class="bi bi-box"></i>
+                    <span>Planes</span>
+                </a>
+                <a href="proyecto.html" class="px-4 py-2 text-white rounded-lg hover:bg-white/10 transition-all duration-300 flex items-center space-x-1">
+                    <i class="bi bi-briefcase"></i>
+                        <span>Proyectos</span>
+                </a>
+                <a href="contacto.html" class="ml-4 px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center space-x-2">
+                    <i class="bi bi-envelope"></i>
+                    <span>Contáctanos</span>
+                </a>
+            </div>
+
+            <!-- Botón menú móvil con animación -->
+            <div class="lg:hidden">
+                <button id="mobile-menu-button" class="relative w-10 h-10 text-white focus:outline-none bg-white/10 rounded-lg hover:bg-white/20 transition-all duration-300">
+                    <div id="hamburger" class="absolute inset-0 flex flex-col items-center justify-center space-y-1.5 transition-all duration-300">
+                        <span class="block w-6 h-0.5 bg-white rounded-full transition-all duration-300"></span>
+                        <span class="block w-6 h-0.5 bg-white rounded-full transition-all duration-300"></span>
+                        <span class="block w-6 h-0.5 bg-white rounded-full transition-all duration-300"></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menú móvil mejorado -->
+        <div id="mobile-menu" class="hidden lg:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 bg-white/10 backdrop-blur-lg rounded-lg mt-2">
+                <a href="index.html" class="block px-4 py-3 text-white rounded-lg hover:bg-white/10 transition-all duration-300">
+                    <div class="flex items-center space-x-2">
+                        <i class="bi bi-house-door"></i>
+                        <span>Inicio</span>
+                    </div>
+                </a>
+                <a href="somos.html" class="block px-4 py-3 text-white rounded-lg hover:bg-white/10 transition-all duration-300">
+                    <div class="flex items-center space-x-2">
+                        <i class="bi bi-person"></i>
+                    <span>Nosotros</span>
+                    </div>
+                </a>
+                <a href="servicio.html" class="block px-4 py-3 text-white rounded-lg hover:bg-white/10 transition-all duration-300">
+                    <div class="flex items-center space-x-2">
+                        <i class="bi bi-box"></i>
+                        <span>Planes</span>
+                    </div>
+                </a>
+                <a href="proyecto.html" class="block px-4 py-3 text-white rounded-lg hover:bg-white/10 transition-all duration-300">
+                    <div class="flex items-center space-x-2">
+                        <i class="bi bi-briefcase"></i>
+                        <span>Proyectos</span>
+                    </div>
+                </a>
+                <a href="contacto.html" class="block px-4 py-3 text-white rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 transition-all duration-300 mt-4">
+                    <div class="flex items-center space-x-2 justify-center">
+                        <i class="bi bi-envelope"></i>
+                        <span>Contáctanos</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const header = document.getElementById('header');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburger = document.getElementById('hamburger');
+        let isMenuOpen = false;
+    
+        // Función para manejar el scroll con throttle
+        let lastScrollPosition = 0;
+        let ticking = false;
+    
+        function handleScroll() {
+lastScrollPosition = window.scrollY;
+
+if (!ticking) {
+    window.requestAnimationFrame(() => {
+        if (window.innerWidth >= 1024) { // Solo en pantallas grandes (lg)
+            if (lastScrollPosition > 50) {
+header.classList.remove('bg-transparent');
+header.classList.add('bg-gradient', 'from-[#a3a8d1]', 'via-[#5f47e7]', 'to-[#1e40af]', 'backdrop-blur-lg', 'shadow-lg');
+} else {
+header.classList.add('bg-transparent');
+header.classList.remove('bg-gradient', 'from-[#a3a8d1]', 'via-[#5f47e7]', 'to-[#1e40af]', 'backdrop-blur-lg', 'shadow-lg');
+}
+        } else {
+            header.classList.add('bg-transparent'); // Asegura que sea transparente en móviles
+            header.classList.remove('bg-gray-900/95', 'backdrop-blur-lg', 'shadow-lg');
+        }
+        ticking = false;
+    });
+
+    ticking = true;
+}
+}
+    
+        // Función para toggle del menú móvil con animación
+        function toggleMobileMenu() {
+            isMenuOpen = !isMenuOpen;
+            
+            // Animar icono hamburguesa
+            const spans = hamburger.getElementsByTagName('span');
+            if (isMenuOpen) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+                hamburger.classList.add('active');
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+                hamburger.classList.remove('active');
+            }
+    
+            // Toggle menú con animación
+            if (isMenuOpen) {
+                mobileMenu.style.display = 'block';
+                setTimeout(() => {
+                    mobileMenu.style.opacity = '1';
+                    mobileMenu.style.transform = 'translateY(0)';
+                }, 10);
+            } else {
+                mobileMenu.style.opacity = '0';
+                mobileMenu.style.transform = 'translateY(-10px)';
+                setTimeout(() => {
+                    mobileMenu.style.display = 'none';
+                }, 300);
+            }
+        }
+    
+        // Event listeners
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        mobileMenuButton.addEventListener('click', toggleMobileMenu);
+    
+        // Cerrar menú móvil al hacer click fuera
+        document.addEventListener('click', function(event) {
+            const isClickInside = header.contains(event.target);
+            
+            if (!isClickInside && isMenuOpen) {
+                toggleMobileMenu();
+            }
+        });
+    
+        // Inicializar el estado del header
+        handleScroll();
+    
+        // Añadir estilos de transición al menú móvil
+        mobileMenu.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        mobileMenu.style.opacity = '0';
+        mobileMenu.style.transform = 'translateY(-10px)';
+    });
+    
+    // Añadir efecto de scroll suave a los enlaces
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const href = this.getAttribute('href');
+            if (href !== '#') {
+                document.querySelector(href).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    </script>
+<body>
+  <br><br>
+    <div class="tech-background"></div>
+   
+
+    <section class="hero">
+        <div class="hero-text">
+            <h5>Bienvenido a</h5>
+            <h1>CodeFid</h1>
+            <p>"En CodeFid nos especializamos en ofrecer soluciones digitales completas para tu negocio. Creamos páginas web, alojamos tu sitio de manera segura y te proporcionamos correos corporativos para dar una imagen confiable. Además, desarrollamos aplicaciones personalizadas para que tu empresa funcione mejor y esté siempre conectada. Estaremos siempre al pendiente de tus necesidades, y ellas serán nuestra prioridad. ¡Déjanos ayudarte a hacer crecer tu negocio con tecnología de confianza!"</p>
+            <div class="main-hero">
+                <a href="contacto.html" class="btn">Contáctanos</a>
+                <a href="servicio.html" class="price">
+                    código | <span>fiable</span>
+                </a>
+            </div>
         </div>
 
         <div class="hero-img">
-            <img src="img/persona programando _ -Photoroom.png" alt="">
-
+            <img src="img/persona programando _ -Photoroom.png" alt="Persona programando">
         </div>
-
     </section>
     
     <div class="icons">
-        <a href="https://www.facebook.com/manuel.huayhua.100" ><i class="ri-facebook-circle-fill"></i></a>
+        <a href="https://www.facebook.com/manuel.huayhua.100"><i class="ri-facebook-circle-fill"></i></a>
         <a href="#"><i class="ri-tiktok-fill"></i></a>
         <a href="#"><i class="ri-instagram-fill"></i></a>
     </div>
     
     <div class="scroll">
-        <a href="https://sequitecsa.com/">
+        <a href="somos.html">
             <i class="ri-scroll-to-bottom-line"></i>
-            Scroll Down
+            Conocemos mas!!!
         </a>
     </div>
-<!-- js link-->
-<script src="js/script.js"></script>
+
+    <script>
+        // Cursor personalizado
+        const cursor = document.createElement('div');
+        cursor.classList.add('cursor');
+        document.body.appendChild(cursor);
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Efecto hover en enlaces
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                cursor.style.borderColor = 'var(--hover-color)';
+            });
+            
+            link.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursor.style.borderColor = 'var(--main-color)';
+            });
+        });
+
+        // Efecto parallax suave
+        document.addEventListener('mousemove', (e) => {
+            const heroImg = document.querySelector('.hero-img');
+            const x = (window.innerWidth - e.pageX) / 100;
+            const y = (window.innerHeight - e.pageY) / 100;
+            
+            heroImg.style.transform = `translateX(${x}px) translateY(${y}px)`;
+        });
+    </script>
 </body>
 </html>
